@@ -263,7 +263,7 @@ GamePlay.prototype = {
 			spook1.ghost.body.setSize(14,14,2,4);
 		}else{
 			spook1.ghost.alpha = .45;
-			spook1.ghost.body.enable = false;
+			spook1.ghost.body.setSize(0,0,0,-100)
 		}
 		
 		if(pcolor != spook2.color){
@@ -272,7 +272,7 @@ GamePlay.prototype = {
 			spook2.ghost.body.setSize(14,14,2,4);
 		}else{
 			spook2.ghost.alpha = .45;
-			spook2.ghost.body.enable = false;
+			spook2.ghost.body.setSize(0,0,0,-100)
 		}
 		
 		if(pcolor != spook3.color){
@@ -281,7 +281,7 @@ GamePlay.prototype = {
 			spook3.ghost.body.setSize(14,14,2,4);
 		}else{
 			spook3.ghost.alpha = .45;
-			spook3.ghost.body.enable = false;
+			spook3.ghost.body.setSize(0,0,0,-100)
 		}
 		
 		//Reset platform to right hand side of the screen

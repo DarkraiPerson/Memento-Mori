@@ -20,12 +20,12 @@ GameTutorial.prototype = {
 		
 		if(presscount == 0){
 			presscount++;
-			game.add.text(50, 40, 'My name is Luna', { fontSize: '32px', fill: '#fff' });
-			game.add.text(50, 80, 'I... do not remember how I ended up here', { fontSize: '32px', fill: '#fff' });
+			game.add.text(50, 40, 'My name is Luna.', { fontSize: '32px', fill: '#fff' });
+			game.add.text(50, 80, 'I... do not remember how I ended up here.', { fontSize: '32px', fill: '#fff' });
 			game.add.text(50, 120, 'When I awoke, my skin was as pale as death', { fontSize: '32px', fill: '#fff' });
-			game.add.text(50, 160, 'and I stood before a dark forest', { fontSize: '32px', fill: '#fff' });
-			game.add.text(50, 200, 'There was something about it that... called to me', { fontSize: '32px', fill: '#fff' });
-			move = game.add.text(50, 240, 'It allured me to move deeper into the forest', { fontSize: '32px', fill: '#fff' });
+			game.add.text(50, 160, 'and I stood before a dark forest.', { fontSize: '32px', fill: '#fff' });
+			game.add.text(50, 200, 'There was something about it that... called to me.', { fontSize: '32px', fill: '#fff' });
+			move = game.add.text(50, 240, 'It allured me to move deeper into the forest.', { fontSize: '32px', fill: '#fff' });
 			move.addColor('#ff0000',17);
 			move.addColor('#ffffff',21);
 			keys = game.add.sprite(340,330,'keys');
@@ -46,12 +46,12 @@ GameTutorial.prototype = {
 		if(presscount == 2){
 			presscount++;
 			blackimage1.alpha = 1;
-			game.add.text(30, 40, 'As I traveled in the abyss, I encountered ghosts', { fontSize: '28px', fill: '#fff' });
+			game.add.text(30, 40, 'As I traveled in the abyss, I encountered ghosts.', { fontSize: '28px', fill: '#fff' });
 			game.add.text(30, 80, 'Before they could attack, a flash of fire surrounded me.', { fontSize: '28px', fill: '#fff' });
 			color = game.add.text(30, 120, 'My dress became the same color as them.', { fontSize: '28px', fill: '#fff' });
 			color.addColor('#ff0000',25);
 			color.addColor('#ffffff',30);
-			game.add.text(30, 160, 'After that, they could not harm me', { fontSize: '28px', fill: '#fff' });
+			game.add.text(30, 160, 'After that, they could not harm me.', { fontSize: '28px', fill: '#fff' });
 			dis = game.add.text(30, 200, 'Even the ground seemed to disappear, depending on', { fontSize: '28px', fill: '#fff' });
 			dis.addColor('#ff0000',25);
 			dis.addColor('#ffffff',35);
@@ -84,7 +84,8 @@ GameTutorial.prototype = {
 			sharp.addColor('#ff0000',6);
 			sharp.addColor('#ffffff',11);
 			color = game.add.text(30, 160, 'Was I here before...?', { fontSize: '28px', fill: '#fff' });
-			game.add.text(30, 200, 'The deeper I go, the closer I feel to discovering the truth.', { fontSize: '28px', fill: '#fff' });
+			game.add.text(30, 200, 'The deeper I go, the closer I feel to discovering', { fontSize: '28px', fill: '#fff' });
+			game.add.text(30, 240, 'my answer.', { fontSize: '28px', fill: '#fff' });
 			game.add.text(600, 420, 'Press Space to start', { fontSize: '16px', fill: '#fff' });
 			blackimage3 = game.add.sprite(0,0,'blackimage');
 		}
