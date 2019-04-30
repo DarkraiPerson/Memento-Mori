@@ -20,12 +20,12 @@ GameTutorial.prototype = {
 		
 		if(presscount == 0){
 			presscount++;
-			game.add.text(50, 40, 'My name is Luna.', { fontSize: '32px', fill: '#fff' });
-			game.add.text(50, 80, 'I... do not remember how I ended up here.', { fontSize: '32px', fill: '#fff' });
-			game.add.text(50, 120, 'When I awoke, my skin was as pale as death', { fontSize: '32px', fill: '#fff' });
-			game.add.text(50, 160, 'and I stood before a dark forest.', { fontSize: '32px', fill: '#fff' });
-			game.add.text(50, 200, 'There was something about it that... called to me.', { fontSize: '32px', fill: '#fff' });
-			move = game.add.text(50, 240, 'It allured me to move deeper into the forest.', { fontSize: '32px', fill: '#fff' });
+			game.add.text(30, 40, 'My name is Luna.', { fontSize: '32px', fill: '#fff' });
+			game.add.text(30, 80, 'I... do not remember how I ended up here.', { fontSize: '32px', fill: '#fff' });
+			game.add.text(30, 120, 'When I awoke, my skin was as pale as death', { fontSize: '32px', fill: '#fff' });
+			game.add.text(30, 160, 'and I stood before a dark forest.', { fontSize: '32px', fill: '#fff' });
+			game.add.text(30, 200, 'There was something about it that... called to me.', { fontSize: '32px', fill: '#fff' });
+			move = game.add.text(30, 240, 'It allured me to move deeper into the forest.', { fontSize: '32px', fill: '#fff' });
 			move.addColor('#ff0000',17);
 			move.addColor('#ffffff',21);
 			keys = game.add.sprite(340,330,'keys');
@@ -58,8 +58,8 @@ GameTutorial.prototype = {
 			game.add.text(30,240,'my color.',{ fontSize: '28px', fill: '#fff' });
 			game.add.text(375, 320, '<->', { fontSize: '24px', fill: '#fff' });
 			game.add.text(600, 420, 'Press Space to continue', { fontSize: '16px', fill: '#fff' });
-			bar = game.add.sprite(340,390,'spacebar');
-			bar.scale.setTo(6,6);
+			bar = game.add.sprite(335,390,'spacebar');
+			bar.scale.setTo(3,3);
 			bplayer = game.add.sprite(325, 300, 'playerblack');
 			bplayer.scale.setTo(1.3,1.3);
 			bplayer.frame = 4;

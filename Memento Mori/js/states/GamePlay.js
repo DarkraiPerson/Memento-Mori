@@ -54,20 +54,20 @@ GamePlay.prototype = {
 		platformgroup.enableBody = true;
 		
 		//Creates 3 platforms (Only 3 are on-screen at a time. They will loop)
-		p1 = new platforms(game.rnd.integerInRange(0,0));
+		p1 = new platforms(0);
 		p1.spawn(game,10,game.rnd.integerInRange(120,300),'BlackPlatform','WhitePlatform');
 		platformgroup.add(p1.platform);
 		p1.platform.body.immovable = true;
 		p1.platform.body.velocity.x = -100;
 		
 		
-		p2 = new platforms(game.rnd.integerInRange(1,1));
+		p2 = new platforms(0);
 		p2.spawn(game,365,game.rnd.integerInRange(120,300),'BlackPlatform','WhitePlatform');
 		platformgroup.add(p2.platform);
 		p2.platform.body.immovable = true;
 		p2.platform.body.velocity.x = -100;
 		
-		p3 = new platforms(game.rnd.integerInRange(0,0));
+		p3 = new platforms(1);
 		p3.spawn(game,700,game.rnd.integerInRange(120,300),'BlackPlatform','WhitePlatform');
 		platformgroup.add(p3.platform);
 		p3.platform.body.immovable = true;
