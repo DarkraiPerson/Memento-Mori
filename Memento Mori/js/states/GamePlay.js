@@ -206,7 +206,7 @@ GamePlay.prototype = {
 		}
 
 		//  Enable player to jump if they are standing on the ground/platform
-		if (cursors.up.isDown && hitPlatform && alive == 1)
+		if (game.input.keyboard.justPressed(Phaser.Keyboard.UP) && hitPlatform && alive == 1)
 		{
 			player.body.velocity.y = -450;
 		}
