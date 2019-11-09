@@ -1,1 +1,1 @@
-A 2D endless runner about a ghost girl trying to uncover the truth of her demise.
+A project done for CMPM/ARTG 120 at UCSC Spring 2019. Memento Mori is an endless runner about a girl who has no memory of her past. Lost in a dark forest, a mysterious force allures her to traverse deeper to uncover the truth of her life. Armed with the ability to color swap, she must traverse through platforms and ghosts of different colors.
