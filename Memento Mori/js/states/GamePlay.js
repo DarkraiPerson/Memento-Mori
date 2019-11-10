@@ -1,8 +1,22 @@
+//Creative Tilt:
+//1. One of the thing's I'm proud of coding is the way hitboxes
+//"disable" upon chaning color. I originally turned them off, but
+//then that also turned off ghost/platform velocity. So instead, I just
+//offset them to the bottom of the screen out of the player's view. Also
+//ghosts spawn and platforms speed up at certain time stamps.
+//2. I created a few of my own assets (ghosts, branches) and modified
+//some free ones too. For my game, I wanted to explore the idea of light
+//and dark so I included color as an essential element to the game. Being able
+//to manage their color in addition to the basic concept of platforming is essential
+//to lasting long in this game.
+
 var GamePlay = function(game){};
 var count = 0;
 var min = 0;
 var alive = 1;
 var play = 0;
+var PlatformSpeed = -100;
+var increment = 1;
 
 GamePlay.prototype = {
 	preload: function(){
@@ -12,6 +26,8 @@ GamePlay.prototype = {
 		game.load.image('WhitePlatform', 'assets/img/WhitePlatform.png');
 		game.load.image('WhiteGhost', 'assets/img/WhiteGhost.png');
 		game.load.image('BlackGhost', 'assets/img/BlackGhost.png');
+		game.load.image('whitetimebox', 'assets/img/whitetimebox.png');
+		game.load.image('blacktimebox', 'assets/img/blacktimebox.png');
 		game.load.image('spikes','assets/img/spikes.png'); 
 		game.load.image('blackimage','assets/img/blackimage.png',800,450); 
 		game.load.spritesheet('slashwhite','assets/img/slashwhite.png',192,192);
@@ -58,20 +74,20 @@ GamePlay.prototype = {
 		p1.spawn(game,10,game.rnd.integerInRange(120,300),'BlackPlatform','WhitePlatform');
 		platformgroup.add(p1.platform);
 		p1.platform.body.immovable = true;
-		p1.platform.body.velocity.x = -100;
+		p1.platform.body.velocity.x = PlatformSpeed;
 		
 		
 		p2 = new platforms(0);
 		p2.spawn(game,365,game.rnd.integerInRange(120,300),'BlackPlatform','WhitePlatform');
 		platformgroup.add(p2.platform);
 		p2.platform.body.immovable = true;
-		p2.platform.body.velocity.x = -100;
+		p2.platform.body.velocity.x = PlatformSpeed;
 		
 		p3 = new platforms(1);
 		p3.spawn(game,700,game.rnd.integerInRange(120,300),'BlackPlatform','WhitePlatform');
 		platformgroup.add(p3.platform);
 		p3.platform.body.immovable = true;
-		p3.platform.body.velocity.x = -100;
+		p3.platform.body.velocity.x = PlatformSpeed;
 		
 		//  Ghosts group sp00ky
 		ghostgroup = game.add.group();
@@ -93,6 +109,13 @@ GamePlay.prototype = {
 		spook3.spawn(game,800,game.rnd.integerInRange(100,300),'BlackGhost','WhiteGhost');
 		ghostgroup.add(spook3.ghost);
 		s3 = .8;
+		
+		//Put a border around the time
+		timebox = game.add.sprite(1,17,'blacktimebox')
+		timebox.scale.setTo(1.4,.7);
+		
+		//Enable score display
+		scoreText = game.add.text(45, 22, 'Time: ' + count, { fontSize: '32px', fill: '#000' });
 		
 		// Create player character
 		player = game.add.sprite(30, 30, 'playerblack');
@@ -116,8 +139,6 @@ GamePlay.prototype = {
 		cursors = game.input.keyboard.createCursorKeys();	
 		lastinput = 'right';
 		
-		//Enable score display
-		scoreText = game.add.text(16, 16, 'Time: ' + count, { fontSize: '32px', fill: '#000' });
 		
 		//Create Slash effect
 		slashw = game.add.sprite(0,-50,'slashwhite');
@@ -158,11 +179,12 @@ GamePlay.prototype = {
 		}
 		
 		if(pcolor == 0){
-			scoreText.fill = '#000000';
-		}else{
 			scoreText.fill = '#ffffff';
+			timebox.loadTexture('blacktimebox');
+		}else{
+			scoreText.fill = '#000000';
+			timebox.loadTexture('whitetimebox');
 		}
-		
 		
 		//Scroll Background
 		forest.tilePosition.x -= 1.5;
@@ -206,7 +228,7 @@ GamePlay.prototype = {
 		}
 
 		//  Enable player to jump if they are standing on the ground/platform
-		if (game.input.keyboard.justPressed(Phaser.Keyboard.UP) && hitPlatform && alive == 1)
+		if (cursors.up.isDown && hitPlatform && alive == 1)
 		{
 			player.body.velocity.y = -450;
 		}
@@ -227,30 +249,39 @@ GamePlay.prototype = {
 			}
 		}
 		
+		
+		////CREATIVE TILT////
+		
 		//Check if platform color is the same as player color
 		if(pcolor != p1.color){
-			p1.platform.body.enable = false;
+			//p1.platform.body.enable = false;
+			p1.platform.body.setSize(0,0,0,800);
 			p1.platform.alpha = .55;
-			p1.platform.x -= 1.67;
+			//p1.platform.x -= 1.67;
 		}else{
+			p1.platform.body.setSize(500,77,0,0);
 			p1.platform.body.enable = true;
 			p1.platform.alpha = 1;
 		}
 		
 		if(pcolor != p2.color){
-			p2.platform.body.enable = false;
+			//p2.platform.body.enable = false;
+			p2.platform.body.setSize(0,0,0,800);
 			p2.platform.alpha = .55;
-			p2.platform.x -= 1.67;
+			//p2.platform.x -= 1.67;
 		}else{
+			p2.platform.body.setSize(500,77,0,0);
 			p2.platform.body.enable = true;
 			p2.platform.alpha = 1;
 		}
 		
 		if(pcolor != p3.color){
-			p3.platform.body.enable = false;
+			//p3.platform.body.enable = false;
+			p3.platform.body.setSize(0,0,0,800);
 			p3.platform.alpha = .55;
-			p3.platform.x -= 1.67;
+			//p3.platform.x -= 1.67;
 		}else{
+			p3.platform.body.setSize(500,77,0,0);
 			p3.platform.body.enable = true;
 			p3.platform.alpha = 1;
 			
@@ -263,7 +294,7 @@ GamePlay.prototype = {
 			spook1.ghost.body.setSize(14,14,2,4);
 		}else{
 			spook1.ghost.alpha = .45;
-			spook1.ghost.body.setSize(0,0,0,-100)
+			spook1.ghost.body.setSize(0,0,0,800)
 		}
 		
 		if(pcolor != spook2.color){
@@ -272,7 +303,7 @@ GamePlay.prototype = {
 			spook2.ghost.body.setSize(14,14,2,4);
 		}else{
 			spook2.ghost.alpha = .45;
-			spook2.ghost.body.setSize(0,0,0,-100)
+			spook2.ghost.body.setSize(0,0,0,800)
 		}
 		
 		if(pcolor != spook3.color){
@@ -281,7 +312,7 @@ GamePlay.prototype = {
 			spook3.ghost.body.setSize(14,14,2,4);
 		}else{
 			spook3.ghost.alpha = .45;
-			spook3.ghost.body.setSize(0,0,0,-100)
+			spook3.ghost.body.setSize(0,0,0,800)
 		}
 		
 		//Reset platform to right hand side of the screen
@@ -302,7 +333,7 @@ GamePlay.prototype = {
 			s1 = -s1;
 		}
 		//Move first ghost at 10 sec
-		if(count >=10){
+		if(count >=20){
 			spook1.ghost.x -= 1.8;
 		}
 		spook1.ghost.y += s1
@@ -311,7 +342,7 @@ GamePlay.prototype = {
 			s2 = -s2;
 		}
 		//Move second ghost at 20 sec
-		if(count >=21){
+		if(count >=31){
 			spook2.ghost.x -= 1.8;
 		}
 		spook2.ghost.y += s2
@@ -320,7 +351,7 @@ GamePlay.prototype = {
 			s3 = -s3;
 		}
 		//Move 3rd ghost at 30 sec
-		if(count >=31){
+		if(count >=41){
 			spook3.ghost.x -= 1.8;
 		}
 		spook3.ghost.y += s3
@@ -357,6 +388,25 @@ GamePlay.prototype = {
 		if(blackimage.alpha >= 1){
 			game.state.start('GameOver', this.scoreText);
 		}
+		
+		//Increase speed in increments
+		if (count == 30 && increment == 1){
+			increment++;
+			PlatformSpeed -= 50;
+			p1.platform.body.velocity.x = PlatformSpeed;
+			p2.platform.body.velocity.x = PlatformSpeed;
+			p3.platform.body.velocity.x = PlatformSpeed;
+		}
+		if( min >= 1 && increment == 2){
+			increment++;
+			PlatformSpeed -= 50;
+			p1.platform.body.velocity.x = PlatformSpeed;
+			p2.platform.body.velocity.x = PlatformSpeed;
+			p3.platform.body.velocity.x = PlatformSpeed;
+		}
+		//game.debug.body(p1.platform);
+		//game.debug.body(p2.platform);
+		//game.debug.body(p3.platform);
 	}
 }
 
